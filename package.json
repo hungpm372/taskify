@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.12",
+    "@prisma/client": "^5.12.1",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-separator": "^1.0.3",
@@ -23,6 +24,7 @@
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.0",
+    "zod": "^3.22.5",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
@@ -32,6 +34,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
     "postcss": "^8",
+    "prisma": "^5.12.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
