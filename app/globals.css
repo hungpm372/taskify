@@ -7,6 +7,10 @@ body {
   height: 100%;
 }
 
+.cl-internal-b3fm6y {
+  display: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
