@@ -16,7 +16,9 @@ const Info = () => {
     <div className='flex items-center gap-x-4'>
       <div className='size-[60px] relative'>
         <Image
+          priority
           fill
+          sizes='full'
           src={organization?.imageUrl!}
           alt={organization?.name!}
           className='rounded-md object-cover'

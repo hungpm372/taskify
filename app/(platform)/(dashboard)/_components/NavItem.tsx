@@ -65,6 +65,7 @@ const NavItem = ({ isActive, isExpanded, organization, onExpand }: NavItemProps)
         <div className='flex items-center gap-x-2'>
           <div className='size-7 relative'>
             <Image
+              priority
               fill
               sizes='7'
               src={organization.imageUrl}
