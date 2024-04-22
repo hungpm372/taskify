@@ -3,11 +3,12 @@
 import { defaultImages } from '@/constant/images'
 import { unsplash } from '@/lib/unsplash'
 import { cn } from '@/lib/utils'
-import { Loader2 } from 'lucide-react'
+import { Check, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useFormStatus } from 'react-dom'
+import FormErrors from './FormErrors'
 
 interface FormPickerProps {
   id: string
@@ -67,6 +68,16 @@ const FormPicker = ({ id, errors }: FormPickerProps) => {
               setSelectedImageId(image.id)
             }}
           >
+            <input
+              type='radio'
+              id={id}
+              name={id}
+              className='hidden'
+              checked={selectedImageId === image.id}
+              disabled={pending}
+              readOnly
+              value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}
+            />
             <Image
               src={image.urls.thumb}
               sizes={'full'}
@@ -75,6 +86,11 @@ const FormPicker = ({ id, errors }: FormPickerProps) => {
               alt={image.id}
               className='object-cover rounded-sm'
             />
+            {selectedImageId === image.id && (
+              <div className='absolute inset-y-0 size-full bg-black/30 flex items-center justify-center'>
+                <Check className='size-4 text-white' />
+              </div>
+            )}
             <Link
               href={image.links.html}
               target='_blank'
@@ -85,6 +101,7 @@ const FormPicker = ({ id, errors }: FormPickerProps) => {
           </div>
         ))}
       </div>
+      <FormErrors id={id} errors={errors} />
     </div>
   )
 }

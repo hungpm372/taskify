@@ -12,22 +12,25 @@ interface FormSubmitButtonProps {
   variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link' | 'primary'
 }
 
-export const FormSubmitButton = forwardRef<HTMLInputElement, FormSubmitButtonProps>(
-  ({ children, disabled, className, variant }, ref) => {
-    const { pending } = useFormStatus()
+export const FormSubmitButton = ({
+  children,
+  disabled,
+  className,
+  variant = 'primary'
+}: FormSubmitButtonProps) => {
+  const { pending } = useFormStatus()
 
-    return (
-      <Button
-        disabled={pending || disabled}
-        type='submit'
-        variant={variant}
-        size={'sm'}
-        className={cn(className)}
-      >
-        {children}
-      </Button>
-    )
-  }
-)
+  return (
+    <Button
+      disabled={pending || disabled}
+      type='submit'
+      variant={variant}
+      size={'sm'}
+      className={cn(className)}
+    >
+      {children}
+    </Button>
+  )
+}
 
 FormSubmitButton.displayName = 'FormSubmitButton'
