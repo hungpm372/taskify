@@ -26,7 +26,7 @@ const ListContainer = ({ boardId, data }: ListContainerProps) => {
   }, [data])
 
   return (
-    <ol className='flex h-full gap-x-3'>
+    <ol className='flex h-full gap-x-3 pb-2'>
       {orderedData.map((list, index) => (
         <ListItem key={list.id} index={index} data={list} />
       ))}

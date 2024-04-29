@@ -19,9 +19,10 @@ import ListOptions from './ListOptions'
 
 interface ListHeaderProps {
   data: List
+  onAddCard: () => void
 }
 
-const ListHeader = ({ data }: ListHeaderProps) => {
+const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
   const { execute } = useAction(updateList, {
     onSuccess(data) {
       setTitle(data.title)
@@ -97,7 +98,7 @@ const ListHeader = ({ data }: ListHeaderProps) => {
           {title}
         </div>
       )}
-      <ListOptions onAddCard={() => {}} data={data} />
+      <ListOptions onAddCard={onAddCard} data={data} />
     </div>
   )
 }
