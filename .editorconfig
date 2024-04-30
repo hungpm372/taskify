@@ -1,0 +1,16 @@
+root = true
+
+[*]
+end_of_line = lf
+
+indent_size = 4
+
+[*.{js,ts,tsx,jsx}]
+indent_style = tab
+indent_size = 7
+tab_width = 9
+trim_trailing_whitespace = true
+
+[package.json]
+indent_style = space
+indent_size = 2
