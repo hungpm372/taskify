@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 // for more information about configuring your Middleware
 export default authMiddleware({
   // Allow signed out users to access the specified routes:
-  publicRoutes: ['/'],
+  publicRoutes: ['/', '/api/webhook'],
   afterAuth(auth, req) {
     if (auth.userId && auth.isPublicRoute) {
       let url = '/select-org'
