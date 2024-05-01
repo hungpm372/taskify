@@ -5,51 +5,77 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
 }
 
 model Board {
-  id            String   @id @default(uuid())
-  orgId         String
-  title         String
-  imageId       String
-  imageThumbUrl String   @db.Text
-  imageFullUrl  String   @db.Text
-  imageUsername String   @db.Text
-  imageLinkHTML String   @db.Text
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  lists         List[]
+    id            String   @id @default(uuid())
+    orgId         String
+    title         String
+    imageId       String
+    imageThumbUrl String   @db.Text
+    imageFullUrl  String   @db.Text
+    imageUsername String   @db.Text
+    imageLinkHTML String   @db.Text
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+    lists         List[]
 }
 
 model List {
-  id        String   @id @default(uuid())
-  title     String
-  order     Int
-  boardId   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
-  cards     Card[]
+    id        String   @id @default(uuid())
+    title     String
+    order     Int
+    boardId   String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+    cards     Card[]
 
-  @@index([boardId])
+    @@index([boardId])
 }
 
 model Card {
-  id          String   @id @default(uuid())
-  title       String
-  order       Int
-  description String? @db.Text
-  listId      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  list        List     @relation(fields: [listId], references: [id], onDelete: Cascade)
+    id          String   @id @default(uuid())
+    title       String
+    order       Int
+    description String?  @db.Text
+    listId      String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    list        List     @relation(fields: [listId], references: [id], onDelete: Cascade)
 
-  @@index([listId])
+    @@index([listId])
+}
+
+enum ACTION {
+    CREATE
+    UPDATE
+    DELETE
+}
+
+enum ENTITY_TYPE {
+    BOARD
+    LIST
+    CARD
+}
+
+model AuditLog {
+    id          String      @id @default(uuid())
+    orgId       String
+    action      ACTION
+    entityId    String
+    entityType  ENTITY_TYPE
+    entityTitle String
+    userId      String
+    userImage   String      @db.Text
+    userName    String      @db.Text
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
 }
