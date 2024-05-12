@@ -14,6 +14,8 @@ const nextConfig = {
             }
         ],
     },
+    output: 'export',
+    basePath: '/taskify',
 };
 
 export default nextConfig;
