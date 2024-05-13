@@ -5,6 +5,8 @@ import { siteConfig } from '@/config/site'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const runtime = 'edge'
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.title,

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "pages:build": "npx @cloudflare/next-on-pages"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.12",
